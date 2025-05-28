@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的网站 - 交互页面</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">我的网站</div>
+            <ul class="nav-links">
+                <li><a href="index.html">主页</a></li>
+                <li><a href="products.html">商品销售</a></li>
+                <li><a href="videos.html">视频</a></li>
+                <li><a href="interactive.html" class="active">交互页面</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-title">
+            <h1>交互体验</h1>
+        </section>
+
+        <section class="interactive-container">
+            <div class="interactive-box" id="colorBox">
+                <h2>点击我改变颜色</h2>
+                <p>这是一个交互元素，点击它会改变颜色。</p>
+            </div>
+
+            <div class="interactive-box" id="counterBox">
+                <h2>点击计数器</h2>
+                <p>点击次数: <span id="counter">0</span></p>
+            </div>
+
+            <div class="interactive-box" id="toggleBox">
+                <h2>显示/隐藏内容</h2>
+                <button id="toggleBtn">显示内容</button>
+                <div id="hiddenContent" style="display: none;">
+                    <p>这是一段隐藏的内容，点击上面的按钮可以显示或隐藏它。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 我的网站. 保留所有权利.</p>
+    </footer>
+
+    <script>
+        // 颜色改变功能
+        const colorBox = document.getElementById('colorBox');
+        const colors = ['#f44336', '#2196f3', '#4caf50', '#ff9800', '#9c27b0'];
+        let currentColorIndex = 0;
+
+        colorBox.addEventListener('click', function() {
+            currentColorIndex = (currentColorIndex + 1) % colors.length;
+            this.style.backgroundColor = colors[currentColorIndex];
+        });
+
+        // 计数器功能
+        const counterElement = document.getElementById('counter');
+        let count = 0;
+
+        document.getElementById('counterBox').addEventListener('click', function(e) {
+            // 只有当点击的不是按钮时才增加计数
+            if (e.target.tagName !== 'BUTTON') {
+                count++;
+                counterElement.textContent = count;
+            }
+        });
+
+        // 显示/隐藏内容功能
+        const toggleBtn = document.getElementById('toggleBtn');
+        const hiddenContent = document.getElementById('hiddenContent');
+
+        toggleBtn.addEventListener('click', function() {
+            if (hiddenContent.style.display === 'none') {
+                hiddenContent.style.display = 'block';
+                this.textContent = '隐藏内容';
+            } else {
+                hiddenContent.style.display = 'none';
+                this.textContent = '显示内容';
+            }
+        });
+    </script>
+</body>
+</html>
